@@ -8,8 +8,8 @@
 #include <Adafruit_GFX.h>
 #include <Adafruit_PCD8544.h>
 
-#define YOUR_SSID       "Lan Dat"
-#define YOUR_PASSWORD   "88888888"
+#define YOUR_SSID       "Lan Dat"  // repalce your ssid wifi
+#define YOUR_PASSWORD   "88888888"  // repalce your password wifi
 
 
 // set up webserver and wifi
