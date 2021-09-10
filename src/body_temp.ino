@@ -24,8 +24,7 @@ const char *pass = YOUR_PASSWORD;
 Adafruit_PCD8544 display = Adafruit_PCD8544(13, 12, 14, 27, 26); /* */
 int contrastValue = 60; /* Default Contrast Value */
 Adafruit_MLX90614 mlx = Adafruit_MLX90614();  
-float t_room = mlx.readAmbientTempC();
-int count = 0;  
+float t_room = mlx.readObjectTempC();
 const int trigPin = 5; //trigPin HCSR-04
 const int echoPin = 18; //echoPin HCSR-04
 long duration;
@@ -110,9 +109,7 @@ void loop() {
   display.display();
   delay(100);
 
-  if (flag) {
-    congTacHanhTrinh();
-  }
+
   
   if (distance < 15 && flag == false)
   {
@@ -123,7 +120,7 @@ void loop() {
       hamCanhBao();
     }
     hamLen();
-    flag = true;
+    congTacHanhTrinh();
   }
 }
 
