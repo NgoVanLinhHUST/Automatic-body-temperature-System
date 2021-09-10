@@ -31,6 +31,9 @@ const int echoPin = 18; //echoPin HCSR-04
 long duration;
 boolean flag = false;   // flag cong tac hanh trinh
 int distance = 0;
+unsigned long previousMillis = 0;       
+const long interval = 1000;   
+int buzzerPin = 19; // Pin
 
 /* declare L298N  */
 int ENA = 15;   
@@ -119,7 +122,6 @@ void loop() {
     {
       hamCanhBao();
     }
-    //delay(5000);
     hamLen();
     flag = true;
   }
@@ -136,8 +138,11 @@ void hamDoKhoangCach()
   distance = duration * 0.034 / 2;
   Serial.print("Distance: ");
   Serial.println(distance);
-  delay(1000);
-}
+  unsigned long currentMillis = millis();
+  if (currentMillis - previousMillis >= interval)   
+  {
+    previousMillis = currentMillis;}        // delay 1s
+  }
 void congTacHanhTrinh(){
   giatri = digitalRead(congtachanhtrinh);
   Serial.print("GIA TRI NHAN DUOC: ");
@@ -196,7 +201,6 @@ void hamXuong()
   if (distance > 15)
   {
     hamDoKhoangCach();
-    delay(1000);
   }
   digitalWrite(ENA, LOW);
 
